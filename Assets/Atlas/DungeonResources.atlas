@@ -1,0 +1,124 @@
+{"frames": [
+
+{
+	"filename": "Enemy_Blob_Big.png",
+	"frame": {"x":27,"y":11,"w":14,"h":11},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":13,"w":14,"h":11},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Blob_Small.png",
+	"frame": {"x":1,"y":1,"w":14,"h":7},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":17,"w":14,"h":7},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Demon_Big.png",
+	"frame": {"x":22,"y":43,"w":18,"h":20},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":4,"w":18,"h":20},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Demon_Normal.png",
+	"frame": {"x":21,"y":26,"w":16,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":9,"w":16,"h":15},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Demon_Small.png",
+	"frame": {"x":43,"y":11,"w":14,"h":13},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":11,"w":14,"h":13},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Orc.png",
+	"frame": {"x":1,"y":43,"w":19,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":9,"w":19,"h":15},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Rat.png",
+	"frame": {"x":11,"y":11,"w":14,"h":8},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":16,"w":14,"h":8},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Enemy_Skeleton_Unarmed.png",
+	"frame": {"x":1,"y":26,"w":18,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":9,"w":18,"h":15},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_1.png",
+	"frame": {"x":39,"y":26,"w":18,"h":15},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":9,"w":18,"h":15},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "UI_Damage.png",
+	"frame": {"x":17,"y":1,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "UI_Defense.png",
+	"frame": {"x":27,"y":1,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "UI_Health.png",
+	"frame": {"x":37,"y":1,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "UI_LevelUP.png",
+	"frame": {"x":47,"y":1,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "UI_Speed.png",
+	"frame": {"x":1,"y":11,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "DungeonResources.png",
+	"format": "RGBA8888",
+	"size": {"w":64,"h":64},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:7e994bdb94b6d3097f953c5444375ce8:3c98df0f22c75078c284cdf633df02fc:ea76186393a2c003301f6ea053431763$"
+}
+}
