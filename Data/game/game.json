@@ -1,30 +1,47 @@
 {
 	"monsters": [
         {
-            "name": "blob_small",
+            "name": "Blob",
             "spriteName": "Enemy_Blob_Small",
             "maxHealth": 1,
-            "damage": 1,
+            "damage": 0.5,
             "defense": 1,
-            "speed": 1
+            "speed": 1.5,
+            "healthMaxMultiplier": 5,
+            "damageMaxMultiplier": 5,
+            "defenseMaxMultiplier": 5,
+            "speedMaxMultiplier": 5,
+            "respawnTime": 10
         },
         {
-            "name": "blob_big",
+            "name": "Big_Blob",
             "spriteName": "Enemy_Blob_Big",
             "maxHealth": 1,
             "damage": 1,
             "defense": 1,
-            "speed": 1
+            "speed": 1.5,
+            "healthMaxMultiplier": 10,
+            "damageMaxMultiplier": 10,
+            "defenseMaxMultiplier": 10,
+            "speedMaxMultiplier": 10,
+            "respawnTime": 10
         }
     ],
     "heroes": [
         {
-
+            "name": "hero_1",
+            "spriteName": "Hero_1",
+            "maxHealth": 3,
+            "damage": 1,
+            "defense": 1,
+            "speed": 1
         }
     ],
 
     "mapSizeX": 8,
     "mapSizeY": 8,
     "mouseSensibility": 0.01,
-    "demonLordPosition": {"x": 0, "y": 0}
+    "demonLordPosition": {"x": 0, "y": 0},
+
+    "heroWalkTime": 1
 }

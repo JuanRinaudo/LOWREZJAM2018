@@ -2,6 +2,7 @@ let project = new Project('Fart');
 
 project.addLibrary('zui');
 project.addLibrary('kext');
+project.addLibrary('polygonal-ds');
 project.addLibrary('tweenxcore');
 
 project.addShaders('Assets/Shaders/**');

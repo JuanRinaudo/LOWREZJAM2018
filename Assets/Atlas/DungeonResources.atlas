@@ -1,7 +1,7 @@
 {"frames": [
 
 {
-	"filename": "Enemy_Blob_Big.png",
+	"filename": "Enemy_Blob_Big",
 	"frame": {"x":27,"y":11,"w":14,"h":11},
 	"rotated": false,
 	"trimmed": true,
@@ -9,7 +9,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Blob_Small.png",
+	"filename": "Enemy_Blob_Small",
 	"frame": {"x":1,"y":1,"w":14,"h":7},
 	"rotated": false,
 	"trimmed": true,
@@ -17,7 +17,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Big.png",
+	"filename": "Enemy_Demon_Big",
 	"frame": {"x":22,"y":43,"w":18,"h":20},
 	"rotated": false,
 	"trimmed": true,
@@ -25,7 +25,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Normal.png",
+	"filename": "Enemy_Demon_Normal",
 	"frame": {"x":21,"y":26,"w":16,"h":15},
 	"rotated": false,
 	"trimmed": true,
@@ -33,7 +33,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Small.png",
+	"filename": "Enemy_Demon_Small",
 	"frame": {"x":43,"y":11,"w":14,"h":13},
 	"rotated": false,
 	"trimmed": true,
@@ -41,7 +41,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Orc.png",
+	"filename": "Enemy_Orc",
 	"frame": {"x":1,"y":43,"w":19,"h":15},
 	"rotated": false,
 	"trimmed": true,
@@ -49,7 +49,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Rat.png",
+	"filename": "Enemy_Rat",
 	"frame": {"x":11,"y":11,"w":14,"h":8},
 	"rotated": false,
 	"trimmed": true,
@@ -57,7 +57,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Skeleton_Unarmed.png",
+	"filename": "Enemy_Skeleton_Unarmed",
 	"frame": {"x":1,"y":26,"w":18,"h":15},
 	"rotated": false,
 	"trimmed": true,
@@ -65,7 +65,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Hero_1.png",
+	"filename": "Hero_1",
 	"frame": {"x":39,"y":26,"w":18,"h":15},
 	"rotated": false,
 	"trimmed": true,
@@ -73,7 +73,7 @@
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "UI_Damage.png",
+	"filename": "UI_Damage",
 	"frame": {"x":17,"y":1,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
@@ -81,7 +81,7 @@
 	"sourceSize": {"w":8,"h":8}
 },
 {
-	"filename": "UI_Defense.png",
+	"filename": "UI_Defense",
 	"frame": {"x":27,"y":1,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
@@ -89,7 +89,7 @@
 	"sourceSize": {"w":8,"h":8}
 },
 {
-	"filename": "UI_Health.png",
+	"filename": "UI_Health",
 	"frame": {"x":37,"y":1,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
@@ -97,7 +97,7 @@
 	"sourceSize": {"w":8,"h":8}
 },
 {
-	"filename": "UI_LevelUP.png",
+	"filename": "UI_LevelUP",
 	"frame": {"x":47,"y":1,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
@@ -105,7 +105,7 @@
 	"sourceSize": {"w":8,"h":8}
 },
 {
-	"filename": "UI_Speed.png",
+	"filename": "UI_Speed",
 	"frame": {"x":1,"y":11,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
