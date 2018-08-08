@@ -4,19 +4,16 @@ import kha.Image;
 import kha.math.Vector2;
 import kha.math.Vector2i;
 import kext.Basic;
-import kext.ExtAssets;
 import kext.g2basics.BasicSprite;
-import de.polygonal.ds.ArrayedQueue;
 
 import game.data.Unit.UnitType;
 
 @:structInit
 class Hero extends Basic {
     public var unit:Unit;
-    public var sprite:BasicSprite;
 
-    public var tileQueue:ArrayedQueue<Vector2i>;
-    public var tileTrail:ArrayedQueue<Vector2i>;
+    public var tileQueue:Array<Vector2i>;
+    public var tileTrail:Array<Vector2i>;
 
     private var heroeWalkTimer:Float;
 
@@ -28,13 +25,12 @@ class Hero extends Basic {
         this.unit = unit;
         unit.init(map, UnitType.HERO);
 
-        sprite = BasicSprite.fromFrame(x, y, ExtAssets.frames.get(unit.spriteName));
-        sprite.transform.originY -= (map.tileHeight - sprite.box.y * 0.5);
+        unit.createSprite();
 
         setPosition(new Vector2i(x, y));
-        tileQueue = new ArrayedQueue<Vector2i>();
-        tileTrail = new ArrayedQueue<Vector2i>();
-        tileTrail.enqueue(unit.position);
+        tileQueue = new Array<Vector2i>();
+        tileTrail = new Array<Vector2i>();
+        tileTrail.push(unit.position);
     }
 
     override public function update(delta:Float) {
@@ -56,10 +52,10 @@ class Hero extends Basic {
 
     private function tryGetTarget() {
         var posibilities:Array<Unit> = [];
-        tryAddTileTarget(posibilities, unit.position.x - 1, unit.position.y);
+        // tryAddTileTarget(posibilities, unit.position.x - 1, unit.position.y);
         tryAddTileTarget(posibilities, unit.position.x + 1, unit.position.y);
-        tryAddTileTarget(posibilities, unit.position.x, unit.position.y - 1);
-        tryAddTileTarget(posibilities, unit.position.x, unit.position.y + 1);
+        // tryAddTileTarget(posibilities, unit.position.x, unit.position.y - 1);
+        // tryAddTileTarget(posibilities, unit.position.x, unit.position.y + 1);
 
         if(posibilities.length > 0) {
             var index:Int = Math.floor(Math.random() * posibilities.length);
@@ -76,10 +72,10 @@ class Hero extends Basic {
     private function tryMovement() {
         if(heroeWalkTimer > Data.game.heroWalkTime) {
             var posibilities:Array<Vector2i> = [];
-            tryAddTilePosiblity(posibilities, unit.position.x - 1, unit.position.y, Direction.RIGHT);
+            // tryAddTilePosiblity(posibilities, unit.position.x - 1, unit.position.y, Direction.RIGHT);
             tryAddTilePosiblity(posibilities, unit.position.x + 1, unit.position.y, Direction.LEFT);
-            tryAddTilePosiblity(posibilities, unit.position.x, unit.position.y - 1, Direction.DOWN);
-            tryAddTilePosiblity(posibilities, unit.position.x, unit.position.y + 1, Direction.UP);
+            // tryAddTilePosiblity(posibilities, unit.position.x, unit.position.y - 1, Direction.DOWN);
+            // tryAddTilePosiblity(posibilities, unit.position.x, unit.position.y + 1, Direction.UP);
 
             if(posibilities.length == 0) {
                 lastDirection = null;
@@ -104,14 +100,14 @@ class Hero extends Basic {
         if(unit.position.y < vec.y) { lastDirection = Direction.DOWN; }
         if(unit.position.y > vec.y) { lastDirection = Direction.UP; }
         unit.position = vec;
-        sprite.transform.x = unit.position.x * unit.map.tileWidth + unit.map.tileWidth * 0.5;
-        sprite.transform.y = unit.position.y * unit.map.tileHeight;
+        unit.sprite.transform.x = unit.position.x * unit.map.tileWidth + unit.map.tileWidth * 0.5;
+        unit.sprite.transform.y = unit.position.y * unit.map.tileHeight;
     }
 
     override public function render(backbuffer:Image) {
         if(!unit.dead) {
-            sprite.render(backbuffer);
-		    backbuffer.g2.pushTransformation(sprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
+            unit.sprite.render(backbuffer);
+		    backbuffer.g2.pushTransformation(unit.sprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
             backbuffer.g2.color = kha.Color.Red;
             backbuffer.g2.fillRect(0, 0, unit.map.tileWidth * unit.getHealthPercentage(), 1);
             backbuffer.g2.popTransformation();

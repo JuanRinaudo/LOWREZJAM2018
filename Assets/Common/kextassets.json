@@ -1,5 +1,6 @@
 {
 	"assets": [
-		{"name": "DungeonResources_atlas", "type":"atlas"}
+		{"name": "DungeonResources_atlas", "type":"atlas"},
+		{"name": "animations_anim", "type":"animations"}
 	]
 }

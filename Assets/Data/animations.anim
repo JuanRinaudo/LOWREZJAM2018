@@ -1,0 +1,13 @@
+{
+	"animations": [
+		{
+			"name": "Crystal",
+			"prefix": "Crystal_",
+			"zeroPadding": 4,
+			"from": 1,
+			"to": 5,
+			"fps": 6,
+			"loop": true
+		}
+	]
+}

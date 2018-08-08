@@ -1,11 +1,21 @@
 package game.data;
 
 import kha.math.Vector2i;
+import kext.ExtAssets;
 import kext.g2basics.BasicSprite;
 
 enum UnitType {
     HERO;
     MONSTER;
+}
+
+@:structInit
+class EvolutionData {
+	public var name:String = "UnitBase";
+    public var healthLevel:Int = 0;
+    public var damageLevel:Int = 0;
+    public var defenseLevel:Int = 0;
+    public var speedLevel:Int = 0;
 }
 
 @:structInit
@@ -19,26 +29,25 @@ class UnitData {
     public var speed:Float = 0;
     public var respawnTime:Float = 0;
     
-    public var healthMaxMultiplier:Int = 10;
-    public var damageMaxMultiplier:Int = 10;
-    public var defenseMaxMultiplier:Int = 10;
-    public var speedMaxMultiplier:Int = 10;
+    public var healthMaxLevel:Int = 10;
+    public var damageMaxLevel:Int = 10;
+    public var defenseMaxLevel:Int = 10;
+    public var speedMaxLevel:Int = 10;
+
+    public var evolutions:Array<EvolutionData>;
 }
 
 class Unit {
-	public var name:String = "UnitBase";
-    public var spriteName:String = "UnitSprite";
 	public var health:Float = 0;
-    public var maxHealth:Float = 0;
-    private var _damage:Float = 0;
+    public var maxHealth(get, null):Float;
     public var damage(get, null):Float;
-    private var _defense:Float = 0;
     public var defense(get, null):Float;
-    private var _speed:Float = 0;
     public var speed(get, null):Float;
     private var _respawnTime:Float;
     public var respawnTime(get, null):Float;
     public var canRespawn(get, null):Bool;
+
+    public var data:UnitData;
 
     public var sprite:BasicSprite = null;
 
@@ -54,36 +63,45 @@ class Unit {
     public var target(default, set):Unit;
     public var map:TileData;
 
-    public var healthMultiplier:Float = 1;
-    public var damageMultiplier:Float = 1;
-    public var defenseMultiplier:Float = 1;
-    public var speedMultiplier:Float = 1;
+    public var healthLevel(default, set):Int = 0;
+    public var damageLevel:Int = 0;
+    public var defenseLevel:Int = 0;
+    public var speedLevel:Int = 0;
 
-    public var healthMaxMultiplier:Int = 10;
-    public var damageMaxMultiplier:Int = 10;
-    public var defenseMaxMultiplier:Int = 10;
-    public var speedMaxMultiplier:Int = 10;
+    public var onEvolve:(Void -> Void);
 
     public function new(unitData:UnitData) {
-        name = unitData.name;
-        spriteName = unitData.spriteName;
-        health = unitData.maxHealth;
-        maxHealth = unitData.maxHealth;
-        _damage = unitData.damage;
-        _defense = unitData.defense;
-        _speed = unitData.speed;
-        _respawnTime = unitData.respawnTime == null ? -1 : unitData.respawnTime;
+        data = unitData;
 
-        healthMaxMultiplier = unitData.healthMaxMultiplier;
-        damageMaxMultiplier = unitData.damageMaxMultiplier;
-        defenseMaxMultiplier = unitData.defenseMaxMultiplier;
-        speedMaxMultiplier = unitData.speedMaxMultiplier;
+        health = maxHealth;
+        _respawnTime = unitData.respawnTime == null ? -1 : unitData.respawnTime;
 
         attackTime = 0;
         deadTime = 0;
 
         _position = new Vector2i(0, 0);
         target = null;
+    }
+
+    public function createSprite() {
+        var x:Float = 0;
+        var y:Float = 0;
+        if(sprite != null) {
+            x = sprite.transform.x;
+            y = sprite.transform.y;
+        }
+        sprite = BasicSprite.fromFrame(x, y, ExtAssets.frames.get(data.spriteName));
+        sprite.transform.originY -= (map.tileHeight - sprite.box.y * 0.5);
+    }
+
+    public function evolve(evolution:UnitData) {
+        data = evolution;
+        healthLevel = 0;
+        damageLevel = 0;
+        defenseLevel = 0;
+        speedLevel = 0;
+        health = maxHealth;
+        onEvolve();
     }
 
 	public function init(map:TileData, type:UnitType) {
@@ -96,7 +114,7 @@ class Unit {
             deadTime = Math.min(deadTime + delta, respawnTime);
             if(canRespawn && deadTime >= respawnTime) {
                 deadTime = 0;
-                health = maxHealth;
+                health = data.maxHealth;
                 map.tileUnits[_position.y * map.width + _position.x] = this;
             }
         } else {
@@ -116,8 +134,8 @@ class Unit {
         }
     }
 
-    public function hit(damage:Float) {
-        health -= damage;
+    public function hit(incomingDamage:Float) {
+        health -= Math.max(incomingDamage - defense, 0);
         if(dead) {
             target = null;
             attackTime = 0;
@@ -132,7 +150,7 @@ class Unit {
     }
 
     public function getHealthPercentage():Float {
-        return health / maxHealth;
+        return Math.max(health / maxHealth, 0);
     }
 
     public function get_dead():Bool {
@@ -155,10 +173,18 @@ class Unit {
         return target;
     }
 
-    public function get_damage():Float { return _damage * damageMultiplier; }
-    public function get_defense():Float { return _defense * defenseMultiplier; }
-    public function get_speed():Float { return _speed * speedMultiplier; }
-    public function get_respawnTime():Float { return _respawnTime / healthMultiplier; }
+    public function get_maxHealth():Float { return data.maxHealth * (healthLevel * 0.1 + 1); }
+    public function get_damage():Float { return data.damage * (damageLevel * 0.1 + 1); }
+    public function get_defense():Float { return data.defense * (defenseLevel * 0.1 + 1); }
+    public function get_speed():Float { return data.speed * (speedLevel * 0.1 + 1); }
+    public function get_respawnTime():Float { return _respawnTime / (healthLevel * 0.1 + 1); }
 
     public function get_canRespawn():Bool { return _respawnTime != -1; }
+
+    public function set_healthLevel(value:Int):Int {
+        var percentage = health / maxHealth;
+        healthLevel = value;
+        health = maxHealth * percentage;
+        return value;
+    }
 }

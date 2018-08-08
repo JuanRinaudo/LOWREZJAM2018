@@ -8,13 +8,16 @@ import kha.math.Vector2;
 import kha.math.Vector2i;
 import kext.Application;
 import kext.AppState;
+import kext.ExtAssets;
 import kext.g2basics.Camera2D;
 import kext.g2basics.BasicTileset;
+import kext.g2basics.AnimatedSprite;
 
 import game.data.Unit;
 import game.data.Hero;
 import game.data.Monster;
 import game.data.TileData;
+import game.data.UnitManager;
 
 class GameState extends AppState {
 
@@ -22,6 +25,8 @@ class GameState extends AppState {
     private var mainLayer:Layer;
     private var backgroundLayer:Layer;
     private var foregroundLayer:Layer;
+
+    private var playerHealth:Array<AnimatedSprite>;
 
     private var map:TileData;
 
@@ -31,10 +36,11 @@ class GameState extends AppState {
     private var foregroundTileset:BasicTileset;
 
     private var upgradeMenu:UpgradeMenu;
-    private var upgradeOpen:Bool;
 
     private var heroes:Array<Hero>;
     private var monsters:Array<Monster>;
+
+    private var unitManager:UnitManager;
 
     public function new() {
         super();
@@ -46,11 +52,14 @@ class GameState extends AppState {
 
         tileCursor = new Vector2i(0, 0);
 
+        playerHealth = [];
+
         setupData();
         setupTilesets();
         setupUnits();
-        
-        upgradeMenu = new UpgradeMenu();
+        setupUnitManager();
+        setupUpgradeMenu();
+        setupHealth();
     }
 
     private function setupData() {
@@ -86,35 +95,54 @@ class GameState extends AppState {
             if(i == 0) { tile = 5; }
             else if(i == map.width - 1) { tile = 7; }
             else { tile = 6; }
-            foregroundTileset.data[i] = tile;
+            backgroundTileset.data[i] = tile;
             map.tileWalkable[i] = false;
+            if(i == 0) { tile = 14; }
+            else if(i == map.width - 1) { tile = 13; }
+            else { tile = 6; }
+            foregroundTileset.data[i + (map.height - 1) * map.width] = tile;
+            map.tileWalkable[i + (map.height - 1) * map.width] = false;
         }
-        for(i in 1...map.height) {
+        for(i in 1...map.height - 1) {
             foregroundTileset.data[i * map.width] = 10;
             map.tileWalkable[i * map.width] = false;
             foregroundTileset.data[i * map.width + map.width - 1] = 9;
             map.tileWalkable[i * map.width + map.width - 1] = false;
         }
-        // for(i in 0...10) {
-        //     var index = Math.floor(Math.random() * map.width * map.height);
-        //     foregroundTileset.data[index] = 4;
-        //     map.tileWalkable[index] = false;
-        // }
 
         backgroundLayer.add(backgroundTileset);
         foregroundLayer.add(foregroundTileset);
     }
-    
-	override public function update(delta:Float) {
-        handleMapScrolling();
-        calculateTileCursor();
-        checkMouseClick();
-        
-        if(upgradeOpen) {
-            upgradeMenu.update(delta);
+
+    private function setupUnitManager() {
+        var units:Dynamic = Data.game.monsters;
+        UnitManager.addMonsters(units);
+    }
+
+    private function setupUpgradeMenu() {
+        upgradeMenu = new UpgradeMenu();
+    }
+
+    private function setupHealth() {
+        var animation = ExtAssets.animations.Crystal;
+        for(i in 1...map.height - 1) {
+            var startingFrame:Int = Math.floor(Math.random() * animation.frames.length);
+            var healthSprite:AnimatedSprite = new AnimatedSprite((map.width - 1) * map.tileWidth + 2, i * map.tileHeight + 4, animation, i % animation.frames.length);
+            playerHealth.push(healthSprite);
+            camera.add(healthSprite);
         }
-        
+    }
+
+	override public function update(delta:Float) {
         camera.update(delta);
+
+        if(upgradeMenu.open) {
+            upgradeMenu.update(delta);
+        } else {
+            handleMapScrolling();
+            calculateTileCursor();
+            checkMouseClick();
+        }
     }
 
     private function handleMapScrolling() {
@@ -159,7 +187,7 @@ class GameState extends AppState {
 
     private function openUpgradeMenu(unit:Unit) {
         upgradeMenu.setUnit(unit);
-        upgradeOpen = true;
+        upgradeMenu.open = true;
     }
 
 	private var clearColor:Color = Color.fromString("#FF000000");
@@ -179,8 +207,8 @@ class GameState extends AppState {
         //         backbuffer.g2.fillRect(i * map.tileWidth, j * map.tileHeight, map.tileWidth, map.tileHeight);
         //     }
         // }
-
-        if(upgradeOpen) {
+        
+        if(upgradeMenu.open) {
             upgradeMenu.render(backbuffer);
         }
 
