@@ -1,3 +1,19 @@
 {
-	"fontSize": 24
+	"fontSize": 12,
+	"soulSpritePos": {"x": 1, "y": 51},
+	"soulTextPos": {"x": 14, "y": 51},
+	"killRectangle": {"x": 51, "y": 1, "width": 12, "height": 12},
+	"killSpritePos": {"x": 51, "y": 1},
+	"killRectangleColor": "#BB000000",
+	"upgradeBackgroundColor": "#BB000000",
+	"upgradedColor": "#BBFF6644",
+	"upgradeCanBuyColor": "#BBFFFFFF",
+	"upgradeUnavalableColor": "#BB808080",
+	"upgradeRectangle": {"x": 1, "y": 21, "width": 62, "height": 42},
+	"nameY": 11,
+	"healthY": 23,
+	"defenseY": 33,
+	"damageY": 43,
+	"speedY": 53,
+	"statBoxHeight": 8
 }

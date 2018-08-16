@@ -14,10 +14,7 @@ project.addAssets('Assets/Data/**');
 
 project.addSources('Source');
 
-//project.addParameter('-dce std');
-
-if (platform === 'debug-html5' || platform === 'html5') {
-	project.addAssets('Assets/Data/web/**');
+if (platform === 'html5') {
 	project.addAssets('Assets/Web/**');
 }
 
@@ -26,8 +23,6 @@ if (platform === 'android') {
 }
 
 //Data for hotloading
-if (platform === 'debug-html5' || platform === 'krom') {
-	project.addAssets('Data/game/**');
-}
+project.addAssets('Data/game/**');
 
 resolve(project);

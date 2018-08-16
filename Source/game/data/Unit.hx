@@ -1,97 +1,149 @@
 package game.data;
 
-import kha.math.Vector2i;
+import kha.Color;
+import kha.Image;
+import kha.math.Vector2;
 import kext.ExtAssets;
 import kext.g2basics.BasicSprite;
-
-enum UnitType {
-    HERO;
-    MONSTER;
-}
-
-@:structInit
-class EvolutionData {
-	public var name:String = "UnitBase";
-    public var healthLevel:Int = 0;
-    public var damageLevel:Int = 0;
-    public var defenseLevel:Int = 0;
-    public var speedLevel:Int = 0;
-}
-
-@:structInit
-class UnitData {
-	public var name:String = "UnitBase";
-    public var spriteName:String = "UnitSprite";
-	public var health:Float = 0;
-    public var maxHealth:Float = 0;
-    public var damage:Float = 0;
-    public var defense:Float = 0;
-    public var speed:Float = 0;
-    public var respawnTime:Float = 0;
-    
-    public var healthMaxLevel:Int = 10;
-    public var damageMaxLevel:Int = 10;
-    public var defenseMaxLevel:Int = 10;
-    public var speedMaxLevel:Int = 10;
-
-    public var evolutions:Array<EvolutionData>;
-}
+import kext.g2basics.AnimatedSprite;
 
 class Unit {
-	public var health:Float = 0;
+	public var health:Float;
     public var maxHealth(get, null):Float;
     public var damage(get, null):Float;
     public var defense(get, null):Float;
     public var speed(get, null):Float;
-    private var _respawnTime:Float;
-    public var respawnTime(get, null):Float;
-    public var canRespawn(get, null):Bool;
+    public var range(get, null):Float;
+    public var movementSpeed(get, null):Float;
+
+    public var canUpgrade(get, null):Bool;
+
+    public var currentLane:MapLane;
+
+    public var x(default, set):Float;
+    public var y(default, set):Float;
 
     public var data:UnitData;
 
     public var sprite:BasicSprite = null;
+    public var animatedSprite:AnimatedSprite = null;
+
+    public var powers:Array<Power>;
 
     public var type:UnitType = null;
+    public var important:Bool = false;
 
-    public var attackTime:Float = 0;
-    public var deadTime:Float = 0;
+    public var attackTime:Float;
+    public var deadTime:Float;
 
     public var dead(get, null):Bool;
 
-    private var _position:Vector2i;
-    public var position(get, set):Vector2i;
     public var target(default, set):Unit;
-    public var map:TileData;
+    public var map:GameMap;
 
-    public var healthLevel(default, set):Int = 0;
-    public var damageLevel:Int = 0;
-    public var defenseLevel:Int = 0;
-    public var speedLevel:Int = 0;
+    public var healthLevel(default, set):Int;
+    public var damageLevel:Int;
+    public var defenseLevel:Int;
+    public var speedLevel:Int;
+    public var tempHealth:Int;
+    public var tempDamage:Int;
+    public var tempDefense:Int;
+    public var tempSpeed:Int;
+
+    public var unitColor:Color;
+    public var hitRedTimer:Float;
+
+    public var conditions:Array<UnitCondition>;
 
     public var onEvolve:(Void -> Void);
+    public var onDeath:(Void -> Void);
 
-    public function new(unitData:UnitData) {
+    public function new(x:Int, y:Int, unitData:UnitData, map:GameMap, type:UnitType) {
         data = unitData;
+        this.map = map;
+        this.type = type;
+
+        healthLevel = 0;
+        damageLevel = 0;
+        defenseLevel = 0;
+        speedLevel = 0;
+
+        tempHealth = 0;
+        tempDamage = 0;
+        tempDefense = 0;
+        tempSpeed = 0;
 
         health = maxHealth;
-        _respawnTime = unitData.respawnTime == null ? -1 : unitData.respawnTime;
+
+        unitColor = Color.White;
+
+        important = unitData.important != null ? unitData.important : false;
 
         attackTime = 0;
         deadTime = 0;
 
-        _position = new Vector2i(0, 0);
         target = null;
+        
+        conditions = [];
+
+        tryCreateSprite();
+        tryCreateAnimatedSprite();
+        tryCreatePowers();
+
+        setTilePosition(x, y);
+
+        currentLane = map.lanes[y];
+        if(type == UnitType.MONSTER) {
+            currentLane.addMonster(this);
+        } else {
+            currentLane.addHero(this);
+        }
     }
 
-    public function createSprite() {
-        var x:Float = 0;
-        var y:Float = 0;
-        if(sprite != null) {
-            x = sprite.transform.x;
-            y = sprite.transform.y;
+    private function setupUnit() {
+        tryCreateSprite();
+        tryCreateAnimatedSprite();
+        tryCreatePowers();
+    }
+
+    public function tryCreateSprite() {
+        if(data.spriteName != null) {
+            sprite = BasicSprite.fromFrame(0, 0, ExtAssets.frames.get(data.spriteName));
+            sprite.transform.originX = 12;
+            sprite.transform.originY = 8;
         }
-        sprite = BasicSprite.fromFrame(x, y, ExtAssets.frames.get(data.spriteName));
-        sprite.transform.originY -= (map.tileHeight - sprite.box.y * 0.5);
+    }
+
+    public function tryCreateAnimatedSprite() {
+        if(data.animationName != null) {
+            animatedSprite = AnimatedSprite.fromAnimationName(0, 0, data.animationName);
+            animatedSprite.play(Math.floor(Math.random() * animatedSprite.currentAnimation.frames.length));
+            animatedSprite.transform.originX = 12;
+            animatedSprite.transform.originY = 8;
+        }
+    }
+
+    public function tryCreatePowers() {
+        powers = [];
+        if(data.powerNames != null) {
+            for(name in data.powerNames) {
+                powers.push(PowerManager.createByName(name, this));
+            }
+        }
+    }
+
+    public function setTilePosition(tx:Float, ty:Float) {
+        x = tx * map.tileWidth + map.tileWidth * 0.5;
+        y = ty * map.tileHeight;
+    }
+
+    private function moveUnit(delta:Float) {
+        if(sprite != null) {
+            sprite.transform.x = sprite.transform.x + delta;
+        }
+        if(animatedSprite != null) {
+            animatedSprite.transform.x = animatedSprite.transform.x + delta;
+        }
     }
 
     public function evolve(evolution:UnitData) {
@@ -101,85 +153,155 @@ class Unit {
         defenseLevel = 0;
         speedLevel = 0;
         health = maxHealth;
-        onEvolve();
+        sprite = null;
+        animatedSprite = null;
+        setupUnit();
+        set_x(x);
+        set_y(y);
+        conditions = [];
+        if(onEvolve != null) { onEvolve(); }
     }
 
-	public function init(map:TileData, type:UnitType) {
-        this.map = map;
-        this.type = type;
-	}
-
     public function update(delta:Float) {
+        hitRedTimer = Math.max(hitRedTimer - delta, 0);
+        unitColor.R = 1;
+        unitColor.G = 1 - hitRedTimer * Data.game.hitRedTint;
+        unitColor.B = 1 - hitRedTimer * Data.game.hitRedTint;
+
+        checkConditions(delta);
+
         if(dead) {
-            deadTime = Math.min(deadTime + delta, respawnTime);
-            if(canRespawn && deadTime >= respawnTime) {
-                deadTime = 0;
-                health = data.maxHealth;
-                map.tileUnits[_position.y * map.width + _position.x] = this;
-            }
+
         } else {
-            if(target != null) {
-                attackTime += delta * speed;
+            for(power in powers) {
+                power.update(delta);
+            }
+
+            if(animatedSprite != null) { animatedSprite.update(delta); }
+
+            attackTime = Math.min(attackTime + delta * speed, 1);
+        }
+    }
+
+    private function checkConditions(delta:Float) {
+        for(condition in conditions) {
+            condition.duration -= delta;
+            if(condition.duration <= 0) {
+                conditions.remove(condition);
+                changeTempStat(condition.stat, -condition.value, 0);
             }
         }
     }
 
+    public function tryGetTarget() {
+        target = currentLane.tryGetTarget(this);
+    }
+
     public function tryAttack() {
-        if(target != null && attackTime > 1) {
-            target.hit(damage);
-            attackTime = 0;
-            if(target.dead) {
-                target = null;
+        if(attackTime >= 1) {
+            if(data.projectileSpeed > 0 && currentLane.hasEnemy(this)) { //Projectile Unit
+                currentLane.addProjectile(new Projectile(x + data.projectileOffset.x, y + data.projectileOffset.y, this));
+                attackTime = 0;
+            } else { //Instant attack unit
+                if(target != null) {
+                    target.hit(damage);
+                    attackTime = 0;
+                    if(target.dead) {
+                        target = null;
+                    }
+                }
             }
         }
     }
 
     public function hit(incomingDamage:Float) {
-        health -= Math.max(incomingDamage - defense, 0);
-        if(dead) {
-            target = null;
-            attackTime = 0;
-            if(respawnTime < 0) {
-                map.tileUnits[position.y * map.width + position.x] = null;
+        var hitDamage:Float = Math.max(incomingDamage - defense, 0);
+        if(hitDamage > 0) {
+            health -= hitDamage;
+            hitRedTimer = Data.game.hitRedTime;
+            if(dead) {
+                target = null;
+                attackTime = 0;
+                if(onDeath != null) { onDeath(); }
             }
         }
     }
 
-    public function getRespawnAlpha():Float {
-        return (deadTime / respawnTime * 0.8) + 0.2;
+    public function heal(healValue:Float) {
+        health = Math.min(health + healValue, maxHealth);
+    }
+
+    public function kill() {
+        hit(maxHealth * 2);
     }
 
     public function getHealthPercentage():Float {
         return Math.max(health / maxHealth, 0);
     }
 
+    public function render(backbuffer:Image) {
+        if(sprite != null) {
+            sprite.color = unitColor;
+            sprite.render(backbuffer);
+        }
+        if(animatedSprite != null) {
+            animatedSprite.color = unitColor;
+            animatedSprite.render(backbuffer);
+        }
+
+        if(sprite != null) {
+            backbuffer.g2.pushTransformation(sprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
+        } else {
+            backbuffer.g2.pushTransformation(animatedSprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
+        }
+        backbuffer.g2.color = kha.Color.Red;
+        backbuffer.g2.fillRect(6, 25, Math.max((map.tileWidth - 4) * getHealthPercentage(), 1), 1);
+        backbuffer.g2.popTransformation();
+    }
+
     public function get_dead():Bool {
         return health <= 0;
-    }
-
-    public function get_position():Vector2i {
-        return _position;
-    }
-
-    public function set_position(vec:Vector2i):Vector2i {
-        map.tileUnits[_position.y * map.width + _position.x] = null;
-        _position = vec;
-        map.tileUnits[_position.y * map.width + _position.x] = this;
-        return _position;
     }
 
     public function set_target(unit:Unit):Unit {
         target = unit;
         return target;
     }
+    
+    public function changeTempStat(stat:String, value:Int, duration:Float) {
+        if(stat == "health") {
+            tempHealth += value;
+        } else if(stat == "defense") {
+            tempDefense += value;
+        } else if(stat == "damage") {
+            tempDamage += value;
+        } else if(stat == "speed") {
+            tempSpeed += value;
+        }
+        if(duration > 0) {
+            conditions.push({stat: stat, value: value, duration: duration});
+        }
+    }
 
-    public function get_maxHealth():Float { return data.maxHealth * (healthLevel * 0.1 + 1); }
-    public function get_damage():Float { return data.damage * (damageLevel * 0.1 + 1); }
-    public function get_defense():Float { return data.defense * (defenseLevel * 0.1 + 1); }
-    public function get_speed():Float { return data.speed * (speedLevel * 0.1 + 1); }
-    public function get_respawnTime():Float { return _respawnTime / (healthLevel * 0.1 + 1); }
+    public function get_maxHealth():Float { return data.maxHealth * ((healthLevel + tempHealth) * Data.game.statMultiplier + 1); }
+    public function get_damage():Float { return data.damage * ((damageLevel + tempDamage) * Data.game.statMultiplier + 1); }
+    public function get_defense():Float { return data.defense * ((defenseLevel + tempDefense) * Data.game.statMultiplier + 1); }
+    public function get_speed():Float { return data.speed * ((speedLevel + tempSpeed) * Data.game.statMultiplier + 1); }
+    public function get_movementSpeed():Float { return data.movementSpeed * speed; }
+    public function get_range():Float { return data.range; }
 
-    public function get_canRespawn():Bool { return _respawnTime != -1; }
+    public function get_canUpgrade():Bool { return Player.souls >= data.upgradeCost; }
+
+    public function set_x(value:Float):Float {
+        if(sprite != null) { sprite.transform.x = value; }
+        if(animatedSprite != null) { animatedSprite.transform.x = value; }
+        return x = value;
+    }
+    public function set_y(value:Float):Float {
+        if(sprite != null) { sprite.transform.y = value; }
+        if(animatedSprite != null) { animatedSprite.transform.y = value; }
+        return y = value;
+    }
 
     public function set_healthLevel(value:Int):Int {
         var percentage = health / maxHealth;

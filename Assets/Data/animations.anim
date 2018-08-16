@@ -6,7 +6,25 @@
 			"zeroPadding": 4,
 			"from": 1,
 			"to": 5,
-			"fps": 6,
+			"fps": 10,
+			"loop": true
+		},
+		{
+			"name": "SmallCrystal",
+			"prefix": "SmallCrystal_",
+			"zeroPadding": 4,
+			"from": 1,
+			"to": 5,
+			"fps": 10,
+			"loop": true
+		},
+		{
+			"name": "Void",
+			"prefix": "Void_",
+			"zeroPadding": 4,
+			"from": 1,
+			"to": 5,
+			"fps": 10,
 			"loop": true
 		}
 	]

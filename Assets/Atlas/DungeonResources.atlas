@@ -1,120 +1,376 @@
 {"frames": [
 
 {
-	"filename": "Crystal_0001",
-	"frame": {"x":59,"y":39,"w":16,"h":22},
+	"filename": "Archer_Projectile",
+	"frame": {"x":0,"y":0,"w":8,"h":3},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":2,"w":16,"h":22},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":3},
+	"sourceSize": {"w":8,"h":3}
+},
+{
+	"filename": "Blob_Big_Projectile",
+	"frame": {"x":8,"y":0,"w":4,"h":4},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":4,"h":4},
+	"sourceSize": {"w":4,"h":4}
+},
+{
+	"filename": "Blob_Projectile",
+	"frame": {"x":12,"y":0,"w":3,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":3},
+	"sourceSize": {"w":3,"h":3}
+},
+{
+	"filename": "Crystal_0001",
+	"frame": {"x":15,"y":0,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
 	"filename": "Crystal_0002",
-	"frame": {"x":23,"y":39,"w":16,"h":22},
+	"frame": {"x":39,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":2,"w":16,"h":22},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
 	"filename": "Crystal_0003",
-	"frame": {"x":37,"y":15,"w":14,"h":22},
+	"frame": {"x":63,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":6,"y":2,"w":14,"h":22},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
 	"filename": "Crystal_0004",
-	"frame": {"x":53,"y":15,"w":14,"h":22},
+	"frame": {"x":87,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":2,"w":14,"h":22},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
 	"filename": "Crystal_0005",
-	"frame": {"x":41,"y":39,"w":16,"h":22},
+	"frame": {"x":111,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":2,"w":16,"h":22},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Blob_Big",
-	"frame": {"x":97,"y":1,"w":16,"h":12},
+	"filename": "DaBlob_Projectile",
+	"frame": {"x":135,"y":0,"w":6,"h":6},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":12,"w":16,"h":12},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":6,"h":6},
+	"sourceSize": {"w":6,"h":6}
+},
+{
+	"filename": "Heal_0001",
+	"frame": {"x":141,"y":0,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Blob_Small",
-	"frame": {"x":79,"y":1,"w":16,"h":8},
+	"filename": "Heal_0002",
+	"frame": {"x":165,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":16,"w":16,"h":8},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Big",
-	"frame": {"x":77,"y":39,"w":20,"h":20},
+	"filename": "Heal_0003",
+	"frame": {"x":189,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":2,"y":4,"w":20,"h":20},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Normal",
-	"frame": {"x":19,"y":15,"w":16,"h":16},
+	"filename": "Heal_0004",
+	"frame": {"x":213,"y":0,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":8,"w":16,"h":16},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Demon_Small",
-	"frame": {"x":1,"y":15,"w":16,"h":14},
+	"filename": "Heal_0005",
+	"frame": {"x":0,"y":24,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":10,"w":16,"h":14},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Orc",
-	"frame": {"x":69,"y":15,"w":20,"h":16},
+	"filename": "Heal_0006",
+	"frame": {"x":24,"y":24,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":2,"y":8,"w":20,"h":16},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Rat",
-	"frame": {"x":61,"y":1,"w":16,"h":8},
+	"filename": "Heal_0007",
+	"frame": {"x":48,"y":24,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":4,"y":16,"w":16,"h":8},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
-	"filename": "Enemy_Skeleton_Unarmed",
-	"frame": {"x":1,"y":39,"w":20,"h":16},
+	"filename": "Hero_0",
+	"frame": {"x":72,"y":24,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":2,"y":8,"w":20,"h":16},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
 	"filename": "Hero_1",
-	"frame": {"x":91,"y":15,"w":20,"h":16},
+	"frame": {"x":96,"y":24,"w":24,"h":24},
 	"rotated": false,
-	"trimmed": true,
-	"spriteSourceSize": {"x":2,"y":8,"w":20,"h":16},
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
 	"sourceSize": {"w":24,"h":24}
 },
 {
+	"filename": "Hero_2",
+	"frame": {"x":120,"y":24,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_3",
+	"frame": {"x":144,"y":24,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_3_a",
+	"frame": {"x":168,"y":24,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_4",
+	"frame": {"x":192,"y":24,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_5",
+	"frame": {"x":216,"y":24,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_6",
+	"frame": {"x":0,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Hero_7",
+	"frame": {"x":24,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Blob_Big",
+	"frame": {"x":48,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Blob_Small",
+	"frame": {"x":72,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_DaBlob",
+	"frame": {"x":96,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Demon_Big",
+	"frame": {"x":120,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Demon_Normal",
+	"frame": {"x":144,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Demon_Small",
+	"frame": {"x":168,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Orc",
+	"frame": {"x":192,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Orc_Berserk",
+	"frame": {"x":216,"y":48,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Overlord",
+	"frame": {"x":0,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Rat",
+	"frame": {"x":24,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Skeleton_Archer",
+	"frame": {"x":48,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Skeleton_Heavy_Archer",
+	"frame": {"x":72,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Skeleton_Mage",
+	"frame": {"x":96,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Monster_Skeleton_Unarmed",
+	"frame": {"x":120,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Overlord_Projectile",
+	"frame": {"x":144,"y":72,"w":5,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":5,"h":5},
+	"sourceSize": {"w":5,"h":5}
+},
+{
+	"filename": "SmallCrystal_0001",
+	"frame": {"x":149,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "SmallCrystal_0002",
+	"frame": {"x":173,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "SmallCrystal_0003",
+	"frame": {"x":197,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "SmallCrystal_0004",
+	"frame": {"x":221,"y":72,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "SmallCrystal_0005",
+	"frame": {"x":0,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Sniper_Projectile",
+	"frame": {"x":24,"y":96,"w":10,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":10,"h":3},
+	"sourceSize": {"w":10,"h":3}
+},
+{
 	"filename": "UI_Back",
-	"frame": {"x":31,"y":1,"w":8,"h":8},
+	"frame": {"x":34,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
@@ -122,7 +378,7 @@
 },
 {
 	"filename": "UI_Damage",
-	"frame": {"x":1,"y":1,"w":8,"h":8},
+	"frame": {"x":42,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
@@ -130,7 +386,7 @@
 },
 {
 	"filename": "UI_Defense",
-	"frame": {"x":11,"y":1,"w":8,"h":8},
+	"frame": {"x":50,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
@@ -138,35 +394,115 @@
 },
 {
 	"filename": "UI_Health",
-	"frame": {"x":21,"y":1,"w":8,"h":8},
+	"frame": {"x":58,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
 	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "UI_Kill_1",
+	"frame": {"x":66,"y":96,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
+	"sourceSize": {"w":12,"h":12}
+},
+{
+	"filename": "UI_Kill_2",
+	"frame": {"x":78,"y":96,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
+	"sourceSize": {"w":12,"h":12}
 },
 {
 	"filename": "UI_LevelUP",
-	"frame": {"x":41,"y":1,"w":8,"h":8},
+	"frame": {"x":90,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
 	"sourceSize": {"w":8,"h":8}
 },
 {
+	"filename": "UI_Souls",
+	"frame": {"x":98,"y":96,"w":12,"h":12},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":12,"h":12},
+	"sourceSize": {"w":12,"h":12}
+},
+{
 	"filename": "UI_Speed",
-	"frame": {"x":51,"y":1,"w":8,"h":8},
+	"frame": {"x":110,"y":96,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
 	"sourceSize": {"w":8,"h":8}
+},
+{
+	"filename": "Void_0001",
+	"frame": {"x":118,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Void_0002",
+	"frame": {"x":142,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Void_0003",
+	"frame": {"x":166,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Void_0004",
+	"frame": {"x":190,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Void_0005",
+	"frame": {"x":214,"y":96,"w":24,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":24,"h":24},
+	"sourceSize": {"w":24,"h":24}
+},
+{
+	"filename": "Void_Projectile",
+	"frame": {"x":238,"y":96,"w":5,"h":5},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":5,"h":5},
+	"sourceSize": {"w":5,"h":5}
+},
+{
+	"filename": "Wizard_Projectile",
+	"frame": {"x":243,"y":96,"w":3,"h":3},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":3},
+	"sourceSize": {"w":3,"h":3}
 }],
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "DungeonResources.png",
 	"format": "RGBA8888",
-	"size": {"w":128,"h":128},
+	"size": {"w":256,"h":256},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:14813f1d84b7ac33ba0cf3097b86d510:4a734b8700b74ca2d21be333411780e7:ea76186393a2c003301f6ea053431763$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f1efb0a9ac7ef64b8fd1b1726278268e:431b833fbc037df820d3e23732780fde:ea76186393a2c003301f6ea053431763$"
 }
 }

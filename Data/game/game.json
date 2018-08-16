@@ -2,69 +2,608 @@
 	"monsters": [
         {
             "name": "Blob",
-            "spriteName": "Enemy_Blob_Small",
+            "spriteName": "Monster_Blob_Small",
+            "projectileName": "Blob_Projectile",
+            "level": 0,
+            "hitRadius": 6,
             "maxHealth": 2,
             "damage": 0.5,
             "defense": 0,
-            "speed": 1.5,
+            "speed": 0.4,
+            "range": 0,
+            "projectileSpeed": 15,
+            "projectileOffset": {"x": -3, "y": 13},
+            "createCost": 1,
+            "upgradeCost": 1,
+            "healthMaxLevel": 3,
+            "damageMaxLevel": 3,
+            "defenseMaxLevel": 3,
+            "speedMaxLevel": 3,
+            "evolutions": [
+                {"name": "B.Blob", "healthLevel": 1, "damageLevel": 1, "defenseLevel": 1, "speedLevel": 1},
+                {"name": "Skeleton", "healthLevel": 0, "damageLevel": 2, "defenseLevel": 2, "speedLevel": 0},
+                {"name": "Crystal", "healthLevel": 2, "damageLevel": 0, "defenseLevel": 2, "speedLevel": 0},
+                {"name": "S.Demon", "healthLevel": 2, "damageLevel": 0, "defenseLevel": 0, "speedLevel": 2}
+            ],
+            "powerNames": ["Regeneration1"]
+        },
+        {
+            "name": "B.Blob",
+            "spriteName": "Monster_Blob_Big",
+            "projectileName": "Blob_Big_Projectile",
+            "level": 1,
+            "hitRadius": 6,
+            "maxHealth": 5,
+            "damage": 1,
+            "defense": 0.5,
+            "speed": 0.5,
+            "range": 0,
+            "projectileSpeed": 20,
+            "projectileOffset": {"x": -3, "y": 10},
+            "upgradeCost": 2,
             "healthMaxLevel": 4,
             "damageMaxLevel": 4,
             "defenseMaxLevel": 4,
             "speedMaxLevel": 4,
-            "respawnTime": 5,
             "evolutions": [
-                {"name": "B.Blob", "healthLevel": 2, "damageLevel": 2, "defenseLevel": 2, "speedLevel": 2},
-                {"name": "Skeleton", "healthLevel": 0, "damageLevel": 4, "defenseLevel": 2, "speedLevel": 0}
-            ]
+                {"name": "DaBlob", "healthLevel": 2, "damageLevel": 2, "defenseLevel": 2, "speedLevel": 2}
+            ],
+            "powerNames": ["Regeneration2"]
         },
         {
-            "name": "B.Blob",
-            "spriteName": "Enemy_Blob_Big",
-            "maxHealth": 5,
-            "damage": 1,
-            "defense": 1,
-            "speed": 1.25,
-            "healthMaxLevel": 8,
-            "damageMaxLevel": 8,
-            "defenseMaxLevel": 8,
-            "speedMaxLevel": 8,
-            "respawnTime": 10,
+            "name": "DaBlob",
+            "spriteName": "Monster_DaBlob",
+            "projectileName": "DaBlob_Projectile",
+            "level": 2,
+            "hitRadius": 6,
+            "maxHealth": 10,
+            "damage": 2.5,
+            "defense": 0.75,
+            "speed": 0.4,
+            "range": 0,
+            "projectileSpeed": 15,
+            "projectileOffset": {"x": -3, "y": 10},
+            "upgradeCost": 4,
+            "healthMaxLevel": 6,
+            "damageMaxLevel": 6,
+            "defenseMaxLevel": 4,
+            "speedMaxLevel": 4,
             "evolutions": [
-
-            ]
+                {"name": "Void", "healthLevel": 6, "damageLevel": 0, "defenseLevel": 4, "speedLevel": 4},
+                {"name": "BlackBow", "healthLevel": 4, "damageLevel": 6, "defenseLevel": 0, "speedLevel": 4},
+                {"name": "B.Demon", "healthLevel": 6, "damageLevel": 4, "defenseLevel": 4, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration2"]
+        },
+        {
+            "name": "Crystal",
+            "animationName": "SmallCrystal",
+            "level": 1,
+            "hitRadius": 3,
+            "maxHealth": 4,
+            "damage": 0.25,
+            "defense": 0.25,
+            "speed": 0.3,
+            "range": 16,
+            "upgradeCost": 2,
+            "healthMaxLevel": 4,
+            "damageMaxLevel": 2,
+            "defenseMaxLevel": 2,
+            "speedMaxLevel": 4,
+            "important": true,
+            "evolutions": [
+                {"name": "B.Crystal", "healthLevel": 4, "damageLevel": 0, "defenseLevel": 0, "speedLevel": 2}
+            ],
+            "powerNames": ["Regeneration1", "SoulGen1"]
+        },
+        {
+            "name": "B.Crystal",
+            "animationName": "Crystal",
+            "level": 2,
+            "hitRadius": 5,
+            "maxHealth": 8,
+            "damage": 1 ,
+            "defense": 0.8,
+            "speed": 0.4,
+            "range": 20,
+            "upgradeCost": 4,
+            "healthMaxLevel": 6,
+            "damageMaxLevel": 6,
+            "defenseMaxLevel": 4,
+            "speedMaxLevel": 4,
+            "important": true,
+            "evolutions": [
+                {"name": "Void", "healthLevel": 5, "damageLevel": 4, "defenseLevel": 0, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration2", "SoulGen2"]
+        },
+        {
+            "name": "Void",
+            "animationName": "Void",
+            "projectileName": "Void_Projectile",
+            "level": 3,
+            "hitRadius": 5,
+            "maxHealth": 12,
+            "damage": 4,
+            "defense": 2,
+            "speed": 0.5,
+            "range": 0,
+            "projectileSpeed": 10,
+            "projectileOffset": {"x": 0, "y": 10},
+            "upgradeCost": 8,
+            "healthMaxLevel": 8,
+            "damageMaxLevel": 6,
+            "defenseMaxLevel": 6,
+            "speedMaxLevel": 12,
+            "important": true,
+            "evolutions": [
+                
+            ],
+            "powerNames": ["Regeneration3", "SoulGen3"]
         },
         {
             "name": "Skeleton",
-            "spriteName": "Enemy_Skeleton_Unarmed",
+            "spriteName": "Monster_Skeleton_Unarmed",
+            "level": 1,
+            "hitRadius": 8,
             "maxHealth": 5,
-            "damage": 3,
-            "defense": 0.5,
-            "speed": 1.5,
+            "damage": 2,
+            "defense": 0.25,
+            "speed": 0.425,
+            "range": 10,
+            "upgradeCost": 2,
             "healthMaxLevel": 5,
-            "damageMaxLevel": 10,
+            "damageMaxLevel": 4,
             "defenseMaxLevel": 5,
-            "speedMaxLevel": 8,
-            "respawnTime": 10,
+            "speedMaxLevel": 2,
             "evolutions": [
-
-            ]
+                {"name": "A.Skeleton", "healthLevel": 0, "damageLevel": 4, "defenseLevel": 0, "speedLevel": 2},
+                {"name": "W.Skeleton", "healthLevel": 2, "damageLevel": 4, "defenseLevel": 0, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration2"]
+        },
+        {
+            "name": "A.Skeleton",
+            "spriteName": "Monster_Skeleton_Archer",
+            "projectileName": "Archer_Projectile",
+            "level": 2,
+            "hitRadius": 8,
+            "maxHealth": 5,
+            "damage": 4,
+            "defense": 0.1,
+            "speed": 0.45,
+            "range": 0,
+            "projectileSpeed": 30,
+            "projectileOffset": {"x": 0, "y": 10},
+            "upgradeCost": 4,
+            "healthMaxLevel": 4,
+            "damageMaxLevel": 6,
+            "defenseMaxLevel": 4,
+            "speedMaxLevel": 6,
+            "evolutions": [
+                {"name": "BlackBow", "healthLevel": 0, "damageLevel": 6, "defenseLevel": 0, "speedLevel": 3}
+            ],
+            "powerNames": ["Regeneration2", "RapidShot1"]
+        },
+        {
+            "name": "BlackBow",
+            "spriteName": "Monster_Skeleton_Heavy_Archer",
+            "projectileName": "Sniper_Projectile",
+            "level": 3,
+            "hitRadius": 8,
+            "maxHealth": 8,
+            "damage": 9,
+            "defense": 1,
+            "speed": 0.5,
+            "range": 0,
+            "projectileSpeed": 40,
+            "projectileOffset": {"x": 0, "y": 10},
+            "upgradeCost": 8,
+            "healthMaxLevel": 6,
+            "damageMaxLevel": 12,
+            "defenseMaxLevel": 6,
+            "speedMaxLevel": 8,
+            "evolutions": [
+                
+            ],
+            "powerNames": ["Regeneration2", "RapidShot2"]
+        },
+        {
+            "name": "W.Skeleton",
+            "spriteName": "Monster_Skeleton_Mage",
+            "projectileName": "Wizard_Projectile",
+            "level": 2,
+            "hitRadius": 8,
+            "maxHealth": 5,
+            "damage": 2,
+            "defense": 0.5,
+            "speed": 0.6,
+            "range": 0,
+            "projectileSpeed": 10,
+            "projectileOffset": {"x": 0, "y": 10},
+            "upgradeCost": 4,
+            "healthMaxLevel": 5,
+            "damageMaxLevel": 6,
+            "defenseMaxLevel": 4,
+            "speedMaxLevel": 5,
+            "evolutions": [
+                {"name": "Overlord", "healthLevel": 3, "damageLevel": 6, "defenseLevel": 0, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration2", "Heal1"]
+        },
+        {
+            "name": "Overlord",
+            "spriteName": "Monster_Overlord",
+            "projectileName": "Overlord_Projectile",
+            "level": 3,
+            "hitRadius": 8,
+            "maxHealth": 10,
+            "damage": 6,
+            "defense": 2,
+            "speed": 0.6,
+            "range": 0,
+            "projectileSpeed": 20,
+            "projectileOffset": {"x": 0, "y": 10},
+            "upgradeCost": 8,
+            "healthMaxLevel": 6,
+            "damageMaxLevel": 8,
+            "defenseMaxLevel": 6,
+            "speedMaxLevel": 12,
+            "evolutions": [
+                
+            ],
+            "powerNames": ["Regeneration3", "Heal2", "DamageBoost"]
+        },
+        {
+            "name": "S.Demon",
+            "spriteName": "Monster_Demon_Small",
+            "level": 1,
+            "hitRadius": 6,
+            "maxHealth": 6,
+            "damage": 1,
+            "defense": 0.5,
+            "speed": 0.6,
+            "range": 8,
+            "upgradeCost": 2,
+            "healthMaxLevel": 6,
+            "damageMaxLevel": 2,
+            "defenseMaxLevel": 4,
+            "speedMaxLevel": 4,
+            "evolutions": [
+                {"name": "Demon", "healthLevel": 4, "damageLevel": 0, "defenseLevel": 2, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration2", "Weakness1"]
+        },
+        {
+            "name": "Demon",
+            "spriteName": "Monster_Demon_Normal",
+            "level": 2,
+            "hitRadius": 7,
+            "maxHealth": 12,
+            "damage": 2,
+            "defense": 0.75,
+            "speed": 0.55,
+            "range": 9,
+            "upgradeCost": 4,
+            "healthMaxLevel": 8,
+            "damageMaxLevel": 3,
+            "defenseMaxLevel": 6,
+            "speedMaxLevel": 3,
+            "evolutions": [
+                {"name": "B.Demon", "healthLevel": 5, "damageLevel": 0, "defenseLevel": 4, "speedLevel": 0}
+            ],
+            "powerNames": ["Regeneration3"]
+        },
+        {
+            "name": "B.Demon",
+            "spriteName": "Monster_Demon_Big",
+            "level": 3,
+            "hitRadius": 8,
+            "maxHealth": 20,
+            "damage": 6,
+            "defense": 2,
+            "speed": 0.5,
+            "range": 10,
+            "upgradeCost": 8,
+            "healthMaxLevel": 12,
+            "damageMaxLevel": 4,
+            "defenseMaxLevel": 10,
+            "speedMaxLevel": 6,
+            "evolutions": [
+                
+            ],
+            "powerNames": ["Regeneration4", "Weakness2"]
         }
     ],
     "heroes": [
         {
+            "name": "hero_0",
+            "spriteName": "Hero_0",
+            "level": 0,
+            "hitRadius": 9,
+            "maxHealth": 1,
+            "damage": 0.5,
+            "defense": 0,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 5
+        }, 
+        {
             "name": "hero_1",
             "spriteName": "Hero_1",
-            "maxHealth": 1,
-            "damage": 1,
+            "level": 1,
+            "hitRadius": 9,
+            "maxHealth": 2,
+            "damage": 0.75,
             "defense": 0,
-            "speed": 1
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 8
+        },
+        {
+            "name": "hero_2",
+            "spriteName": "Hero_2",
+            "level": 2,
+            "hitRadius": 9,
+            "maxHealth": 4,
+            "damage": 1,
+            "defense": 0.2,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 10
+        },
+        {
+            "name": "hero_3",
+            "spriteName": "Hero_3",
+            "level": 3,
+            "hitRadius": 9,
+            "maxHealth": 5,
+            "damage": 1.25,
+            "defense": 0.5,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 8
+        },
+        {
+            "name": "hero_3_a",
+            "spriteName": "Hero_3_a",
+            "level": 3,
+            "hitRadius": 9,
+            "maxHealth": 5,
+            "damage": 1.75,
+            "defense": 0,
+            "speed": 1.2,
+            "range": 6,
+            "movementSpeed": 13
+        },
+        {
+            "name": "hero_4",
+            "spriteName": "Hero_4",
+            "level": 4,
+            "hitRadius": 9,
+            "maxHealth": 7,
+            "damage": 2,
+            "defense": 0.75,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 8
+        },
+        {
+            "name": "hero_5",
+            "spriteName": "Hero_5",
+            "level": 5,
+            "hitRadius": 9,
+            "maxHealth": 10,
+            "damage": 2.5,
+            "defense": 1,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 8
+        },
+        {
+            "name": "hero_6",
+            "spriteName": "Hero_6",
+            "level": 6,
+            "hitRadius": 9,
+            "maxHealth": 14,
+            "damage": 3,
+            "defense": 1.5,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 9
+        },
+        {
+            "name": "hero_7",
+            "spriteName": "Hero_7",
+            "level": 7,
+            "hitRadius": 9,
+            "maxHealth": 25,
+            "damage": 4,
+            "defense": 2,
+            "speed": 1,
+            "range": 6,
+            "movementSpeed": 10
+        }
+    ],
+    "powers": [
+        {
+            "name": "Regeneration1",
+            "typeName": "RegenerateHealth",
+            "values": {
+                "target": "self",
+                "healAmmount": 0.01
+            }
+        },
+        {
+            "name": "Regeneration2",
+            "typeName": "RegenerateHealth",
+            "values": {
+                "target": "self",
+                "healAmmount": 0.02
+            }
+        },
+        {
+            "name": "Regeneration3",
+            "typeName": "RegenerateHealth",
+            "values": {
+                "target": "self",
+                "healAmmount": 0.035
+            }
+        },
+        {
+            "name": "Regeneration4",
+            "typeName": "RegenerateHealth",
+            "values": {
+                "target": "self",
+                "healAmmount": 0.06
+            }
+        },
+        {
+            "name": "RapidShot1",
+            "typeName": "TempStatChange",
+            "values": {
+                "target": "self",
+                "stat": "speed",
+                "value": 50,
+                "duration": 3,
+                "cooldown": 15
+            }
+        },
+        {
+            "name": "RapidShot2",
+            "typeName": "TempStatChange",
+            "values": {
+                "target": "self",
+                "stat": "speed",
+                "value": 100,
+                "duration": 4,
+                "cooldown": 15
+            }
+        },
+        {
+            "name": "Heal1",
+            "typeName": "HealUnit",
+            "values": {
+                "target": "randomAlly",
+                "range": 48,
+                "value": 0.25,
+                "cooldown": 10
+            }
+        },
+        {
+            "name": "Heal2",
+            "typeName": "HealUnit",
+            "values": {
+                "target": "randomAlly",
+                "range": 96,
+                "value": 0.5,
+                "cooldown": 7.5
+            }
+        },
+        {
+            "name": "DamageBoost",
+            "typeName": "TempStatChange",
+            "values": {
+                "target": "self",
+                "stat": "damage",
+                "value": 5,
+                "duration": 5,
+                "cooldown": 30
+            }
+        },
+        {
+            "name": "Weakness1",
+            "typeName": "TempStatChange",
+            "values": {
+                "target": "randomEnemy",
+                "stat": "damage",
+                "range": 96,
+                "value": -2,
+                "duration": 30,
+                "cooldown": 15
+            }
+        },
+        {
+            "name": "Weakness2",
+            "typeName": "TempStatChange",
+            "values": {
+                "target": "randomEnemy",
+                "stat": "damage",
+                "range": 128,
+                "value": -5,
+                "duration": 60,
+                "cooldown": 10
+            }
+        },
+        {
+            "name": "SoulGen1",
+            "typeName": "GeneratePerSecond",
+            "values": {
+                "classToModify": "game.data.Player",
+                "fieldToModify": "souls",
+                "genenerationAmmount": 0.075
+            }
+        },
+        {
+            "name": "SoulGen2",
+            "typeName": "GeneratePerSecond",
+            "values": {
+                "classToModify": "game.data.Player",
+                "fieldToModify": "souls",
+                "genenerationAmmount": 0.125
+            }
+        },
+        {
+            "name": "SoulGen3",
+            "typeName": "GeneratePerSecond",
+            "values": {
+                "classToModify": "game.data.Player",
+                "fieldToModify": "souls",
+                "genenerationAmmount": 0.25
+            }
         }
     ],
 
+    "heroSpawnChances": [0.3, 0.4, 0.2, 0.1],
+    "heroMaxLevelPerTime": [0, 30, 60, 120, 210, 320, 480, 640],
+    "heroMaxLevelPerSouls": [0, 20, 100, 180, 400, 800, 1000, 1500],
+    "heroSpawnTimeByLevel": [2.01, 1.95, 1.9, 1.85, 1.8, 1.75, 1.7, 1.65],
+    "maxHeroSpawnTimeDivisor": 3000,
+    "minHeroSpawnTimer": 0.3,
+
     "mapSizeX": 8,
-    "mapSizeY": 8,
+    "mapSizeY": 6,
+    "mapInitialMonsters": [
+        {"x": -1, "y": 0, "name": "Crystal"},
+        {"x": -1, "y": 1, "name": "Crystal"},
+        {"x": -1, "y": 2, "name": "Crystal"},
+        {"x": -1, "y": 3, "name": "Crystal"},
+        {"x": -1, "y": 4, "name": "Crystal"},
+        {"x": -1, "y": 5, "name": "Crystal"}
+    ],
+    "spawnMonster": "Blob",
+
+    "lanesAvailable": [
+        true, true, true, true, true, true
+    ],
     "mouseSensibility": 0.01,
-    "demonLordPosition": {"x": 0, "y": 0},
+    "mouseScrollStartSensibility": 4,
+
+    "tileSetFloor": 0,
+    "tileSetSeparator": 4,
+    "tileSetDecorationChance": 0.2,
+    "tileSetDecorationMin": 5,
+    "tileSetDecorationMax": 16,
+
+    "cameraExtra": 0.1,
+
+    "startingSouls": 10,
+    "soulsOnHeroKill": 1,
+
+    "statMultiplier": 0.05,
+
+    "hitRedTime": 1,
+    "hitRedTint": 0.5,
 
     "heroWalkTime": 1
 }

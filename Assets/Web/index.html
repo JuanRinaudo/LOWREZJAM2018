@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<meta name="google-signin-client_id" content="757682925901-i6l2k31hcfve3hj0i9kogb4apt3jt6vc.apps.googleusercontent.com" />
+	<meta name="google-signin-cookiepolicy" content="single_host_origin" />
+	<meta name="google-signin-callback" content="signinCallback" />
+	<meta name="google-signin-scope" content="https://www.googleapis.com/auth/games" />
+	<title>Empty</title>
+</head>
+<body>
+	<style>
+	body, html {
+		margin: 0;
+		padding: 0;		
+		overflow:hidden;
+		width: 100%;
+		height: 100%;
+		
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none;   /* Chrome/Safari/Opera */
+		-khtml-user-select: none;    /* Konqueror */
+		-moz-user-select: none;      /* Firefox */
+		-ms-user-select: none;       /* Internet Explorer/Edge */
+		user-select: none;           /* Non-prefixed version, currently */
+	}
+	body {
+		background: black;
+	}
+	canvas {
+		outline: none;		
+		display: block;
+		margin: auto;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 100%;
+		height: 100%;
+	}
+	#game {
+		width: 0px;
+		height: 0px;
+		margin: auto;
+	}
+	#loggingButton {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		visibility: hidden;
+		display: inline-block;
+		background: white;
+		color: #444;
+		width: 190px;
+		border-radius: 5px;
+		border: thin solid #888;
+		box-shadow: 1px 1px 1px grey;
+		white-space: nowrap;
+	}
+	#googleIcon {
+		background: url(g-normal.png) transparent 5px 50% no-repeat;
+		display: inline-block;
+		vertical-align: middle;
+		width: 42px;
+		height: 42px;
+	}
+	#googleText {
+		display: inline-block;
+		vertical-align: middle;
+		padding-left: 42px;
+		padding-right: 42px;
+		font-size: 14px;
+		font-weight: bold;
+	}
+	</style>
+	
+	<div id="game">
+		<canvas id="khanvas" width="800" height="720"></canvas>
+	</div>
+	<div id="loggingButton">
+		<span id="googleIcon"></span>
+		<span id="googleText">Log In</span>
+	</div>
+	<script src="kha.js"></script>
+</body>
+</html>

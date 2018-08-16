@@ -1,7 +1,7 @@
 import kext.Application;
 import kext.AppState;
 import kext.Application.ApplicationOptions;
-import game.gameplay.GameState;
+import game.states.GameState;
 
 import kha.System.SystemOptions;
 import kha.WindowOptions;
