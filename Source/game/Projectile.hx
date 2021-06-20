@@ -1,10 +1,11 @@
-package game.data;
+package game;
 
 import kha.Image;
 import kext.Basic;
 import kext.ExtAssets;
 import kext.g2basics.BasicSprite;
 
+import game.data.UnitType;
 import game.states.GameState;
 
 class Projectile extends Basic {
@@ -20,7 +21,7 @@ class Projectile extends Basic {
         this.onwerUnit = onwerUnit;
 
         tryCreateSprite(x, y);
-        GameState.camera.add(this);
+        GameState.mainCamera.add(this);
     }
 
     public function tryCreateSprite(x:Float, y:Float) {
@@ -54,7 +55,7 @@ class Projectile extends Basic {
     }
 
     private function destroyProjectile() {
-        GameState.camera.remove(this);
+        GameState.mainCamera.remove(this);
         onwerUnit = null;
     }
 

@@ -1,7 +1,11 @@
-package game.data;
+package game;
 
 import kha.Image;
 import kext.Basic;
+
+import game.data.UnitData;
+
+import game.managers.UnitManager;
 
 class GameDirector extends Basic {
 

@@ -17,12 +17,14 @@ import kext.g2basics.BasicSprite;
 import kext.g2basics.BasicTileset;
 
 import game.data.*;
+import game.*;
+import game.managers.*;
 
 typedef InitialMonster = {x:Int, y:Int, monster:String};
 
 class GameState extends AppState {
 
-    public static var camera:Camera2D;
+    public static var mainCamera:Camera2D;
     public static var mainLayer:CameraLayer;
     public static var backgroundLayer:CameraLayer;
     public static var decorationLayer:CameraLayer;
@@ -53,16 +55,19 @@ class GameState extends AppState {
     public function new() {
         super();
 
+        Application.audio.masterVolume = 0;
+
         Player.init();
 
-        camera = new Camera2D(0, 0);
-        mainLayer = camera.defaultLayer;
-        backgroundLayer = camera.createLayer(0);
-        decorationLayer = camera.createLayer(5);
-        camera.moveLayer(mainLayer, 25);
-        foregroundLayer = camera.createLayer(50);
+        mainCamera = new Camera2D(0, 0);
+        mainLayer = mainCamera.defaultLayer;
+        backgroundLayer = mainCamera.createLayer(0);
+        decorationLayer = mainCamera.createLayer(5);
+        mainCamera.moveLayer(mainLayer, 25);
+        foregroundLayer = mainCamera.createLayer(50);
 
         uiCamera = new Camera2D(0, 0);
+        uiCamera.transform.scaleX = uiCamera.transform.scaleY = Math.min(Application.width / 64, Application.height / 64);
         uiLayer = uiCamera.defaultLayer;
 
         tileCursor = new Vector2i(0, 0);
@@ -168,7 +173,7 @@ class GameState extends AppState {
 
         soulCount.text = Player.soulsInt + "";
 
-        camera.update(delta);
+        mainCamera.update(delta);
         uiCamera.update(delta);
 
         Player.totalSouls += Math.max(Player.souls - Player.lastSouls, 0);
@@ -177,7 +182,8 @@ class GameState extends AppState {
         if(upgradeMenu.open) {
             upgradeMenu.update(delta);
         } else {
-            handleMapScrolling();
+            handleCameraScrolling();
+            handleCameraZoom();
             calculateTileCursor();
             checkMouseClick();
         }
@@ -192,7 +198,7 @@ class GameState extends AppState {
         }
     }
 
-    private function handleMapScrolling() {
+    private function handleCameraScrolling() {
         //Keyboard scrolling
         if(Application.keyboard.keyPressed(KeyCode.W)) {
             map.offset.y = Math.round(map.offset.y + 1);
@@ -208,19 +214,26 @@ class GameState extends AppState {
         //Mouse scrolling
         if(Application.mouse.buttonDown(1) || 
             (Application.mouse.buttonDown(0) && Application.mouse.position.sub(mouseStartPosition).length >= Data.game.mouseScrollStartSensibility)) {
-            map.offset = map.offset.add(Application.mouse.posDelta.mult(-Data.game.mouseSensibility));
+            map.offset = map.offset.add(Application.mouse.posDelta.mult(-Data.game.mouseSensibility * mainCamera.transform.scaleX));
         }
 
         //Sprite scrolling
-        map.offset.x = kext.math.MathExt.clamp(map.offset.x, -Data.game.cameraExtra - (map.width - 4), Data.game.cameraExtra);
-        map.offset.y = kext.math.MathExt.clamp(map.offset.y, -Data.game.cameraExtra - (map.height - 4), Data.game.cameraExtra);
-        camera.transform.x = map.offset.x * map.tileWidth;
-        camera.transform.y = map.offset.y * map.tileHeight;
+        map.offset.x = kext.math.MathExt.clamp(map.offset.x, -Data.game.mainCameraExtra - (map.width - 4), Data.game.mainCameraExtra);
+        map.offset.y = kext.math.MathExt.clamp(map.offset.y, -Data.game.mainCameraExtra - (map.height - 4), Data.game.mainCameraExtra);
+        mainCamera.transform.x = map.offset.x * map.tileWidth;
+        mainCamera.transform.y = map.offset.y * map.tileHeight;
+    }
+
+    private function handleCameraZoom() {
+        if(Math.abs(Application.mouse.mouseWheel) > 0) {
+            mainCamera.transform.scaleX -= Application.mouse.mouseWheel;
+            mainCamera.transform.scaleY -= Application.mouse.mouseWheel;
+        }
     }
 
     private function calculateTileCursor() {
-        tileCursor.x = Math.floor((Application.mouse.position.x) / map.tileWidth - map.offset.x);
-        tileCursor.y = Math.floor((Application.mouse.position.y) / map.tileHeight - map.offset.y);
+        tileCursor.x = Math.floor((Application.mouse.position.x - mainCamera.transform.x) / (mainCamera.transform.scaleX * map.tileWidth));
+        tileCursor.y = Math.floor((Application.mouse.position.y - mainCamera.transform.y) / (mainCamera.transform.scaleY * map.tileHeight));
     }
 
     private function checkMouseClick() {
@@ -247,20 +260,10 @@ class GameState extends AppState {
 	override public function render(backbuffer:Image) {
         beginAndClear2D(backbuffer, clearColor);
 
-        camera.render(backbuffer);
+        mainCamera.render(backbuffer);
         uiCamera.render(backbuffer);
 
         renderTileCursor(backbuffer);
-
-        // backbuffer.g2.transformation = kha.math.FastMatrix3.identity();
-        // for(i in 0...4) {
-        //     for(j in 0...4) {
-        //         backbuffer.g2.color = j % 2 == 0 ?
-        //             (i % 2 == 0 ? Color.fromFloats(1, 0, 0, 0.2) : Color.fromFloats(0, 1, 0, 0.2)) :
-        //             (i % 2 == 0 ? Color.fromFloats(0, 1, 0, 0.2) : Color.fromFloats(1, 0, 0, 0.2));
-        //         backbuffer.g2.fillRect(i * map.tileWidth, j * map.tileHeight, map.tileWidth, map.tileHeight);
-        //     }
-        // }
         
         if(upgradeMenu.open) {
             upgradeMenu.render(backbuffer);
@@ -271,9 +274,9 @@ class GameState extends AppState {
 
     private function renderTileCursor(backbuffer:Image) {
         backbuffer.g2.transformation = kha.math.FastMatrix3.identity();
-        backbuffer.g2.transformation = backbuffer.g2.transformation.multmat(kha.math.FastMatrix3.translation(
-            (tileCursor.x + map.offset.x) * map.tileWidth,
-            (tileCursor.y + map.offset.y) * map.tileHeight
+        backbuffer.g2.transformation = mainCamera.transform.getMatrix().multmat(kha.math.FastMatrix3.translation(
+            tileCursor.x * map.tileWidth,
+            tileCursor.y * map.tileHeight
         ));
         backbuffer.g2.color = map.checkTileEmpty(tileCursor.x, tileCursor.y) ? Color.Green : Color.Red;
         backbuffer.g2.drawRect(0, 0, map.tileWidth, map.tileHeight, 2);

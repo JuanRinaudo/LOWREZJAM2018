@@ -1,4 +1,6 @@
-package game.data;
+package game.managers;
+
+import game.data.PowerData;
 
 class PowerManager {
 

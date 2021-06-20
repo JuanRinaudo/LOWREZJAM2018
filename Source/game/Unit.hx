@@ -1,4 +1,4 @@
-package game.data;
+package game;
 
 import kha.Color;
 import kha.Image;
@@ -6,6 +6,12 @@ import kha.math.Vector2;
 import kext.ExtAssets;
 import kext.g2basics.BasicSprite;
 import kext.g2basics.AnimatedSprite;
+
+import game.data.UnitData;
+import game.data.UnitType;
+import game.data.UnitCondition;
+
+import game.managers.PowerManager;
 
 class Unit {
 	public var health:Float;
@@ -250,9 +256,9 @@ class Unit {
         }
 
         if(sprite != null) {
-            backbuffer.g2.pushTransformation(sprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
+            backbuffer.g2.pushTransformation(backbuffer.g2.transformation.multmat(sprite.transform.getMatrix()));
         } else {
-            backbuffer.g2.pushTransformation(animatedSprite.transform.getMatrix().multmat(backbuffer.g2.transformation));
+            backbuffer.g2.pushTransformation(backbuffer.g2.transformation.multmat(animatedSprite.transform.getMatrix()));
         }
         backbuffer.g2.color = kha.Color.Red;
         backbuffer.g2.fillRect(6, 25, Math.max((map.tileWidth - 4) * getHealthPercentage(), 1), 1);

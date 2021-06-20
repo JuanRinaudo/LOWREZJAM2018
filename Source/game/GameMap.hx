@@ -1,7 +1,10 @@
-package game.data;
+package game;
 
 import kha.math.Vector2;
 import game.states.GameState;
+
+import game.data.UnitData;
+import game.data.UnitType;
 
 class GameMap {
 
@@ -46,13 +49,13 @@ class GameMap {
     public function createHero(x:Int, y:Int, unitData:UnitData) {
         var hero:Hero = new Hero(x, y, unitData, this);
         heroes.push(hero.unit);
-        GameState.camera.add(hero);
+        GameState.mainCamera.add(hero);
     }
 
     public function createMonster(x:Int, y:Int, unitData:UnitData) {
         var monster:Monster = new Monster(x, y, unitData, this);
         monsters.push(monster.unit);
-        GameState.camera.add(monster);
+        GameState.mainCamera.add(monster);
     }
 
     public function checkTileEmpty(tx:Int, ty:Int):Bool {

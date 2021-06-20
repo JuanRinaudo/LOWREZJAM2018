@@ -1,8 +1,10 @@
-package game.data;
+package game;
 
 import kext.Basic;
 
+import game.data.PowerData;
 import game.data.PowerType;
+import game.data.UnitType;
 
 class Power extends Basic {
 

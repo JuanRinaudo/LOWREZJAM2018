@@ -1,4 +1,4 @@
-package game.data;
+package game;
 
 import kha.Assets;
 import kha.Image;
@@ -8,6 +8,9 @@ import kext.Application;
 import kext.Basic;
 import kext.g2basics.BasicSprite;
 
+import game.data.UnitData;
+import game.data.UnitType;
+
 class Hero extends Basic {
     public var unit:Unit;
 
@@ -15,8 +18,6 @@ class Hero extends Basic {
     public var tileTrail:Array<Vector2i>;
 
     public var outOfWorld:Bool;
-
-    private var lastDirection:Direction;
 
     public function new(x:Int, y:Int, unitData:UnitData, map:GameMap) {
         super();

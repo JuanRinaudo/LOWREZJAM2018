@@ -5,7 +5,8 @@ import kha.Color;
 import kext.AppState;
 import kext.Application;
 import kext.g2basics.Text;
-import game.data.Player;
+
+import game.Player;
 
 class GameOver extends AppState {
 

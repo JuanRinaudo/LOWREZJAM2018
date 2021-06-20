@@ -1,4 +1,7 @@
-package game.data;
+package game;
+
+import game.data.UnitData;
+import game.data.UnitType;
 
 class MapLane {
 

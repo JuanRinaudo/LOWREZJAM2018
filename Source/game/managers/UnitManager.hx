@@ -1,4 +1,7 @@
-package game.data;
+package game.managers;
+
+import game.data.UnitData;
+import game.data.EvolutionData;
 
 class UnitManager {
 

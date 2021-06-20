@@ -1,13 +1,13 @@
-package game.data;
+package game;
 
 import kha.Assets;
 import kha.Image;
-import kha.math.Vector2;
 import kha.math.Vector2i;
 import kext.Application;
 import kext.Basic;
-import kext.g2basics.BasicSprite;
-import kext.g2basics.AnimatedSprite;
+
+import game.data.UnitData;
+import game.data.UnitType;
 
 class Monster extends Basic {
     public var unit:Unit;

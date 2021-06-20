@@ -5,12 +5,15 @@ import kha.Image;
 import kha.Color;
 import kext.AppState;
 import kext.Application;
+import kext.g2basics.Camera2D;
 import kext.g2basics.BasicSprite;
 import kext.g2basics.Text;
 import kext.ExtAssets;
 import kext.g2basics.Alignment;
 
 import game.data.*;
+
+import game.managers.UnitManager;
 
 class UpgradeMenu extends AppState {
 
@@ -34,14 +37,18 @@ class UpgradeMenu extends AppState {
     private var upgradeCanBuyColor:Color;
     private var upgradeUnavalableColor:Color;
 
+    private var camera:Camera2D;
+
     public function new() {
         super();
+
+        camera = GameState.uiCamera;
 
         upgradedColor = Color.fromString(Data.ui.upgradedColor);
         upgradeCanBuyColor = Color.fromString(Data.ui.upgradeCanBuyColor);
         upgradeUnavalableColor = Color.fromString(Data.ui.upgradeUnavalableColor);
 
-        monsterName = new Text(0, Data.ui.nameY, Application.width, Data.ui.fontSize);
+        monsterName = new Text(0, Data.ui.nameY, 64, Data.ui.fontSize);
         monsterName.fontSize = Data.ui.fontSize;
         monsterName.horizontalAlign = HorizontalAlign.MIDDLE;
         monsterName.verticalAlign = VerticalAlign.TOP;
@@ -71,14 +78,14 @@ class UpgradeMenu extends AppState {
         if(Application.mouse.buttonPressed(0)) {
             checkStatIncrease();
 
-            if(Data.ui.killRectangle.pointInside(Application.mouse.position)) {
+            if(Data.ui.killRectangle.scale(camera.transform.scaleX, camera.transform.scaleY).pointInside(Application.mouse.position)) {
                 if(killStart) {
                     unit.kill();
                     open = false;
                 } else {
                     killStart = true;
                 }
-            } else if(!Data.ui.upgradeRectangle.pointInside(Application.mouse.position)) {
+            } else if(!Data.ui.upgradeRectangle.scale(camera.transform.scaleX, camera.transform.scaleY).pointInside(Application.mouse.position)) {
                 open = false;
             }
         }
@@ -116,11 +123,12 @@ class UpgradeMenu extends AppState {
     }
 
     private function checkScreenClick(startY:Int, height:Int):Bool {
-        return Application.mouse.y > startY && Application.mouse.y < startY + height;
+        var scale:Float = camera.transform.scaleX;
+        return Application.mouse.y > startY * scale && Application.mouse.y < startY * scale + height * scale;
     }
 
     override public function render(backbuffer:Image) {
-        backbuffer.g2.transformation = kha.math.FastMatrix3.identity();
+        backbuffer.g2.transformation = camera.transform.getMatrix();
         backbuffer.g2.color = Color.fromString(Data.ui.killRectangleColor);
         backbuffer.g2.fillRect(Data.ui.killRectangle.x, Data.ui.killRectangle.y, Data.ui.killRectangle.width, Data.ui.killRectangle.height);
 

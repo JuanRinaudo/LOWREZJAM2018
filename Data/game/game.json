@@ -539,7 +539,7 @@
             "name": "SoulGen1",
             "typeName": "GeneratePerSecond",
             "values": {
-                "classToModify": "game.data.Player",
+                "classToModify": "game.Player",
                 "fieldToModify": "souls",
                 "genenerationAmmount": 0.075
             }
@@ -548,7 +548,7 @@
             "name": "SoulGen2",
             "typeName": "GeneratePerSecond",
             "values": {
-                "classToModify": "game.data.Player",
+                "classToModify": "game.Player",
                 "fieldToModify": "souls",
                 "genenerationAmmount": 0.125
             }
@@ -557,7 +557,7 @@
             "name": "SoulGen3",
             "typeName": "GeneratePerSecond",
             "values": {
-                "classToModify": "game.data.Player",
+                "classToModify": "game.Player",
                 "fieldToModify": "souls",
                 "genenerationAmmount": 0.25
             }
@@ -595,7 +595,7 @@
     "tileSetDecorationMin": 5,
     "tileSetDecorationMax": 16,
 
-    "cameraExtra": 0.1,
+    "mainCameraExtra": 0.1,
 
     "startingSouls": 10,
     "soulsOnHeroKill": 1,
